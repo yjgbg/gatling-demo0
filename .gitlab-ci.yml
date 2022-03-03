@@ -1,0 +1,14 @@
+test:
+  image:
+    name: azul/zulu-openjdk-alpine:11-jre
+    entrypoint: [""]
+  cache:
+    paths:
+      - .cache
+  script:
+    - export GRADLE_USER_HOME=$PWD/.cache/
+    - ./gradlew generateProto
+    - ./gradlew gatlingRun
+  artifacts:
+    paths:
+      - build/reports/
